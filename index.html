@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MOYOFY — Social Music Bar Platform</title>
+<meta name="description" content="MOYOFY transforma bares y espacios nocturnos con música participativa, pantallas en vivo y gamificación social. Aumenta el engagement y la diferenciación de tu local.">
+<meta name="keywords" content="MOYOFY, música en bares, gamificación social, pantallas en vivo, plataforma para nightlife, experiencia interactiva, WhatsApp, Telegram, Calendly">
+<meta name="author" content="Abundia.io">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="MOYOFY — Social Music Bar Platform">
+<meta property="og:description" content="Convierte la música en una experiencia social. Participación real, pantallas en vivo y control total desde un dashboard.">
+<meta property="og:image" content="https://i.ibb.co/9kRwcT9V/MOYOFY-2.png">
+<meta property="og:url" content="https://moyofy.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MOYOFY — Social Music Bar Platform">
+<meta name="twitter:description" content="Plataforma de música participativa para bares y espacios nocturnos.">
+<meta name="twitter:image" content="https://i.ibb.co/9kRwcT9V/MOYOFY-2.png">
+<link rel="icon" type="image/x-icon" href="https://i.ibb.co/9kRwcT9V/MOYOFY-2.png">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet" />
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+<style>
+:root{
+/* Identidad base */
+--bg: #0f0b1a;
+--bg2: rgba(255,255,255,0.03);
+--card: rgba(255,255,255,0.05);
+--text: #ffffff;
+--muted: #b3b3cc;
+/* Acentos */
+--purple: #8a2be2;
+--indigo: #4a00e0;
+--warm: #ff6b6b;
+--amber: #ffa726;
+/* Color del logo */
+--logo-tone: #ffb600;
+--primary-gradient: linear-gradient(135deg, var(--purple) 0%, var(--indigo) 100%);
+--secondary-gradient: linear-gradient(135deg, var(--warm) 0%, var(--amber) 100%);
+--glow: 0 0 24px rgba(138, 43, 226, 0.35);
+--glow-warm: 0 0 24px rgba(255, 167, 38, 0.28);
+--radius: 20px;
+--transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+/* Reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+*{ box-sizing:border-box; }
+html, body{ height:100%; }
+body{
+margin:0;
+font-family: 'Poppins', sans-serif;
+background: var(--bg);
+color: var(--text);
+line-height: 1.7;
+overflow-x: hidden;
+background-image:
+radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.12) 0%, transparent 22%),
+radial-gradient(circle at 90% 80%, rgba(255, 167, 38, 0.10) 0%, transparent 22%);
+}
+.section{
+padding: 90px 0;
+}
+.section-title{
+font-family: 'Montserrat', sans-serif;
+font-weight: 900;
+font-size: 2.8rem;
+text-align: center;
+margin: 0 0 18px 0;
+position: relative;
+padding-bottom: 14px;
+}
+.section-title::after{
+content:"";
+position:absolute;
+left:50%;
+bottom:0;
+transform:translateX(-50%);
+width: 110px;
+height: 4px;
+border-radius: 2px;
+background: var(--primary-gradient);
+}
+.section-subtitle{
+text-align:center;
+color: var(--muted);
+max-width: 920px;
+margin: 0 auto 40px auto;
+font-size: 1.12rem;
+}
+.glass-card{
+background: rgba(255,255,255,0.04);
+backdrop-filter: blur(10px);
+border-radius: var(--radius);
+border: 1px solid rgba(255,255,255,0.12);
+padding: 28px;
+transition: var(--transition);
+position: relative;
+overflow: hidden;
+height: 100%;
+}
+.glass-card:hover{
+transform: translateY(-8px);
+box-shadow: var(--glow);
+border-color: rgba(138, 43, 226, 0.28);
+}
+.glass-card::before{
+content:"";
+position:absolute;
+inset:0;
+background: var(--primary-gradient);
+opacity: 0;
+transition: var(--transition);
+z-index: -1;
+}
+.glass-card:hover::before{
+opacity: 0.06;
+}
+.icon-bubble{
+width: 74px;
+height: 74px;
+border-radius: 50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin: 0 auto 14px auto;
+background: var(--primary-gradient);
+box-shadow: var(--glow);
+font-size: 1.8rem;
+}
+.icon-bubble.warm{
+background: var(--secondary-gradient);
+box-shadow: var(--glow-warm);
+}
+/* HERO */
+.hero{
+min-height: 100vh;
+padding-top: 84px;
+display:flex;
+align-items:center;
+position:relative;
+background:
+linear-gradient(rgba(15, 11, 26, 0.88), rgba(15, 11, 26, 0.95)),
+url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1920&q=80');
+background-size: cover;
+background-position: center;
+}
+.hero::after{
+content:"";
+position:absolute;
+bottom:0; left:0;
+width:100%;
+height: 120px;
+background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
+.brand-row{
+display:flex;
+align-items:center;
+justify-content:center;
+gap: 24px;
+flex-wrap: wrap;
+margin-bottom: 10px;
+}
+.brand-logo{
+width: 90px;
+height: 90px;
+border-radius: 18px;
+object-fit: contain;
+background: rgba(255,255,255,0.04);
+border: 1px solid rgba(255,255,255,0.10);
+padding: 10px;
+}
+.brand-name{
+font-family: 'Montserrat', sans-serif;
+font-weight: 900;
+font-size: 4.2rem;
+line-height: 1;
+margin: 0;
+color: var(--logo-tone);
+text-shadow: 0 10px 22px rgba(0,0,0,0.28);
+letter-spacing: 0.5px;
+}
+.hero-tagline{
+font-size: 1.55rem;
+color: var(--muted);
+margin: 12px 0 26px 0;
+}
+.hero-tagline strong{
+color: #fff;
+font-weight: 700;
+}
+.pill{
+display:inline-flex;
+gap:10px;
+align-items:center;
+padding: 10px 14px;
+border-radius: 999px;
+background: rgba(255,255,255,0.06);
+border: 1px solid rgba(255,255,255,0.10);
+color: rgba(255,255,255,0.95);
+font-weight: 600;
+margin: 6px 8px 0 0;
+}
+.pill i{ opacity: 0.9; }
+.pill.warm{ border-color: rgba(255,167,38,0.28); }
+.hero-cta{
+display:flex;
+gap: 12px;
+justify-content:center;
+flex-wrap: wrap;
+margin-top: 26px;
+}
+.btn-hero{
+border-radius: 14px;
+padding: 12px 18px;
+font-weight: 700;
+transition: var(--transition);
+}
+.btn-hero-primary{
+background: var(--primary-gradient);
+border: none;
+color: #fff;
+box-shadow: var(--glow);
+}
+.btn-hero-primary:hover{
+transform: translateY(-2px) scale(1.02);
+box-shadow: 0 0 28px rgba(138, 43, 226, 0.55);
+}
+.btn-hero-secondary{
+background: transparent;
+border: 1px solid rgba(255,255,255,0.22);
+color: #fff;
+}
+.btn-hero-secondary:hover{
+transform: translateY(-2px) scale(1.02);
+border-color: rgba(255,255,255,0.35);
+background: rgba(255,255,255,0.06);
+}
+.value-strip{
+margin-top: 28px;
+}
+.value-strip .glass-card{
+padding: 22px;
+}
+.value-strip h5{
+margin: 10px 0 6px 0;
+font-weight: 800;
+}
+.value-strip p{
+margin: 0;
+color: var(--muted);
+}
+.step-num{
+width: 52px;
+height: 52px;
+border-radius: 14px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight: 900;
+background: rgba(255,255,255,0.06);
+border: 1px solid rgba(255,255,255,0.12);
+margin: 0 auto 10px auto;
+}
+.cta-band{
+position:relative;
+overflow:hidden;
+background: var(--primary-gradient);
+padding: 78px 0;
+}
+.cta-band::before{
+content:"";
+position:absolute;
+inset:0;
+background: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1920&q=80');
+background-size: cover;
+background-position:center;
+opacity: 0.10;
+}
+.cta-band .container{ position:relative; z-index: 2; }
+.cta-title{
+font-family: 'Montserrat', sans-serif;
+font-weight: 900;
+font-size: 2.6rem;
+margin:0 0 12px 0;
+}
+.cta-text{
+font-size: 1.18rem;
+max-width: 900px;
+margin: 0 auto 26px auto;
+opacity: 0.95;
+}
+footer{
+background: rgba(0,0,0,0.75);
+border-top: 1px solid rgba(255,255,255,0.10);
+padding: 46px 0;
+}
+.footer-brand{
+font-family: 'Montserrat', sans-serif;
+font-weight: 900;
+color: var(--logo-tone);
+font-size: 2rem;
+margin: 0;
+}
+.footer-muted{
+color: rgba(255,255,255,0.70);
+}
+.footer-link{
+color: rgba(255,255,255,0.70);
+text-decoration:none;
+}
+.footer-link:hover{
+color: #fff;
+text-decoration: underline;
+}
+.animate-on-scroll{
+opacity: 0;
+transform: translateY(26px);
+transition: opacity 0.65s, transform 0.65s;
+}
+.animate-on-scroll.visible{
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Estilos para los íconos de contacto en CTA */
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.25rem;
+}
+.contact-icon:hover {
+  transform: translateY(-3px) scale(1.1);
+  background: rgba(255,255,255,0.22);
+}
+.contact-icon.whatsapp { color: #25D366; }
+.contact-icon.telegram { color: #0088cc; }
+.contact-icon.email { color: #ffb600; }
+.contact-icon.calendly { color: #006bff; }
+
+/* === MOBILE-FIRST OPTIMIZATIONS === */
+@media (max-width: 576px) {
+  .hero {
+    min-height: auto;
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+  .section-subtitle,
+  .cta-text {
+    text-align: left;
+  }
+  .hero-cta .btn-hero,
+  .cta-band .btn-hero {
+    width: 100%;
+    justify-content: center;
+  }
+  .contact-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.4rem;
+  }
+  .brand-name { font-size: 2.6rem; }
+  .hero-tagline { font-size: 1.25rem; }
+  .section-title { font-size: 2rem; }
+  .section { padding: 60px 0; }
+  .cta-title { font-size: 2rem; }
+  .cta-text { font-size: 1.05rem; }
+}
+@media (max-width: 768px){
+  .brand-name{ font-size: 2.9rem; }
+  .brand-logo{
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    padding: 6px;
+  }
+  .hero-tagline{ font-size: 1.2rem; }
+  .section-title{ font-size: 2.1rem; }
+  .section{ padding: 70px 0; }
+}
+</style>
+</head>
+<body>
+<!-- HERO -->
+<section class="hero">
+<div class="container position-relative">
+<div class="row">
+<div class="col-lg-10 mx-auto text-center">
+<div class="brand-row animate__animated animate__fadeInDown">
+<img class="brand-logo" src="https://i.ibb.co/9kRwcT9V/MOYOFY-2.png" alt="MOYOFY Logo" />
+<h1 class="brand-name">MOYOFY</h1>
+</div>
+<p class="hero-tagline animate__animated animate__fadeInUp animate__delay-1s">
+Convierta la música en <strong>participación real</strong> y su local en una <strong>experiencia social</strong> que la gente mantiene en sus mentes
+</p>
+<div class="d-flex justify-content-center flex-wrap animate__animated animate__fadeInUp animate__delay-2s">
+<span class="pill"><i class="fa-solid fa-qrcode"></i> Sin descargas (QR)</span>
+<span class="pill warm"><i class="fa-solid fa-tv"></i> Pantallas del local en vivo</span>
+<span class="pill"><i class="fa-solid fa-users"></i> Comunidad + ranking</span>
+<span class="pill warm"><i class="fa-solid fa-music"></i> Música participativa</span>
+</div>
+<div class="hero-cta animate__animated animate__fadeInUp animate__delay-3s">
+<a href="#demo" class="btn btn-hero btn-hero-primary">
+Solicitar demo para mi local
+</a>
+<a href="#como-funciona" class="btn btn-hero btn-hero-secondary">
+Ver cómo funciona
+</a>
+</div>
+<div class="row value-strip mt-5">
+<div class="col-md-4 mb-4 animate__animated animate__fadeInUp animate__delay-4s">
+<div class="glass-card text-center">
+<div class="icon-bubble warm"><i class="fa-solid fa-bolt"></i></div>
+<h5>Entrada inmediata</h5>
+<p>El cliente escanea y participa en segundos. Cero fricción.</p>
+</div>
+</div>
+<div class="col-md-4 mb-4 animate__animated animate__fadeInUp animate__delay-4s">
+<div class="glass-card text-center">
+<div class="icon-bubble"><i class="fa-solid fa-people-group"></i></div>
+<h5>Ambiente más vivo</h5>
+<p>La música deja de ser fondo: se convierte en dinámica social del lugar.</p>
+</div>
+</div>
+<div class="col-md-4 mb-4 animate__animated animate__fadeInUp animate__delay-4s">
+<div class="glass-card text-center">
+<div class="icon-bubble warm"><i class="fa-solid fa-chart-line"></i></div>
+<h5>Control para el local</h5>
+<p>Dashboard y reglas para administrar la experiencia.</p>
+</div>
+</div>
+</div>
+<p class="mt-2" style="color: rgba(255,255,255,0.72);">
+MOYOFY es una <strong>Plataforma de Música para espacios sociales</strong>: participación, comunidad y pantallas en tiempo real.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PROBLEMA / CONTEXTO -->
+<section class="section" style="background: rgba(255,255,255,0.02);">
+<div class="container">
+<h2 class="section-title animate-on-scroll">La noche cambió. Las expectativas también.</h2>
+<p class="section-subtitle animate-on-scroll">
+Los espacios nocturnos compiten por algo más que música: compiten por <strong>experiencia</strong>, <strong>identidad</strong> y <strong>conversación</strong>.
+MOYOFY ayuda a que su local no sea “uno más”, sino un lugar al que la gente quiere volver.
+</p>
+<div class="row g-4">
+<div class="col-lg-6 animate-on-scroll">
+<div class="glass-card h-100">
+<h4 class="mb-3" style="color: var(--warm); font-weight: 900;">
+Lo que hoy apaga el ambiente
+</h4>
+<ul class="list-unstyled mb-0">
+<li class="mb-3"><i class="fa-solid fa-circle-xmark text-danger me-2"></i> Música pasiva que no genera interacción.</li>
+<li class="mb-3"><i class="fa-solid fa-circle-xmark text-danger me-2"></i> Experiencias genéricas difíciles de diferenciar.</li>
+<li class="mb-3"><i class="fa-solid fa-circle-xmark text-danger me-2"></i> Cero “historia” para contar en redes o en boca a boca.</li>
+<li class="mb-0"><i class="fa-solid fa-circle-xmark text-danger me-2"></i> Falta de un “motor social” visible en el local.</li>
+</ul>
+</div>
+</div>
+<div class="col-lg-6 animate-on-scroll">
+<div class="glass-card h-100">
+<h4 class="mb-3" style="color: var(--logo-tone); font-weight: 900;">
+Lo que MOYOFY activa en su local
+</h4>
+<ul class="list-unstyled mb-0">
+<li class="mb-3"><i class="fa-solid fa-circle-check text-success me-2"></i> Participación simple: QR, sin descargas.</li>
+<li class="mb-3"><i class="fa-solid fa-circle-check text-success me-2"></i> Dinámica social: mesas compiten, colaboran y se reconocen.</li>
+<li class="mb-3"><i class="fa-solid fa-circle-check text-success me-2"></i> Pantallas en vivo: ranking, próximos temas y momentos del local.</li>
+<li class="mb-0"><i class="fa-solid fa-circle-check text-success me-2"></i> Diferenciación real: su concepto se siente “propio”.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- QUÉ ES MOYOFY -->
+<section class="section">
+<div class="container">
+<h2 class="section-title animate-on-scroll">¿Qué es MOYOFY?</h2>
+<p class="section-subtitle animate-on-scroll">
+Un sistema que convierte la música en una experiencia compartida dentro del local.
+Los clientes participan, el lugar se vuelve más dinámico y usted tiene herramientas para dirigir la experiencia.
+</p>
+<div class="row g-4">
+<div class="col-md-4 animate-on-scroll">
+<div class="glass-card text-center h-100">
+<div class="icon-bubble"><i class="fa-solid fa-music"></i></div>
+<h5 class="fw-bold">Música participativa</h5>
+<p class="mb-0" style="color: var(--muted);">Sugerencias, votaciones y dinámica musical con reglas del local.</p>
+</div>
+</div>
+<div class="col-md-4 animate-on-scroll">
+<div class="glass-card text-center h-100">
+<div class="icon-bubble warm"><i class="fa-solid fa-trophy"></i></div>
+<h5 class="fw-bold">Gamificación con propósito</h5>
+<p class="mb-0" style="color: var(--muted);">Misiones, MOYOS y ranking para crear interacción y pertenencia.</p>
+</div>
+</div>
+<div class="col-md-4 animate-on-scroll">
+<div class="glass-card text-center h-100">
+<div class="icon-bubble"><i class="fa-solid fa-tv"></i></div>
+<h5 class="fw-bold">Pantallas en vivo</h5>
+<p class="mb-0" style="color: var(--muted);">Contenido del local: ranking, próximos temas, momentos y estatus.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PARA DUEÑOS -->
+<section class="section" style="background: rgba(138, 43, 226, 0.06);">
+<div class="container">
+<h2 class="section-title animate-on-scroll">Diseñado para operación real, no solo “una app”</h2>
+<p class="section-subtitle animate-on-scroll">
+MOYOFY se integra al flujo del bar: fácil de activar, fácil de explicar, y visible para el público mediante pantallas.
+</p>
+<div class="row g-4">
+<div class="col-lg-6 animate-on-scroll">
+<div class="glass-card h-100">
+<h4 class="fw-bold mb-3"><i class="fa-solid fa-qrcode me-2" style="color: var(--logo-tone);"></i> QR listo en minutos</h4>
+<p style="color: var(--muted);">
+No hay fricción: el cliente escanea, entra y entiende la dinámica rápidamente.
+Ideal para locales con alto tráfico y rotación.
+</p>
+<div class="mt-3 p-3" style="border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);">
+<div class="d-flex align-items-start gap-2">
+<i class="fa-solid fa-shield-halved mt-1"></i>
+<div>
+<div class="fw-bold">Reglas del local primero</div>
+<div style="color: var(--muted);">Usted define límites, prioridad, dinámica y moderación.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-6 animate-on-scroll">
+<div class="glass-card h-100">
+<h4 class="fw-bold mb-3"><i class="fa-solid fa-chart-simple me-2 text-success"></i> Dashboard para entender el ambiente</h4>
+<p style="color: var(--muted);">
+Visualice participación, interacción y dinámica por horarios.
+No para invadir, sino para dirigir mejor el concepto musical y la experiencia.
+</p>
+<div class="row g-3 mt-1">
+<div class="col-6">
+<div class="p-3" style="border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);">
+<div class="fw-bold"><i class="fa-solid fa-clock me-2"></i> Tiempo & ritmo</div>
+<div style="color: var(--muted); font-size: 0.95rem;">Picos de actividad y momentos fuertes del local.</div>
+</div>
+</div>
+<div class="col-6">
+<div class="p-3" style="border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);">
+<div class="fw-bold"><i class="fa-solid fa-music me-2"></i> Tendencias musicales</div>
+<div style="color: var(--muted); font-size: 0.95rem;">Qué conecta con su público y cuándo.</div>
+</div>
+</div>
+<div class="col-12">
+<div class="p-3" style="border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);">
+<div class="fw-bold"><i class="fa-solid fa-tv me-2"></i> Pantallas como “escenario”</div>
+<div style="color: var(--muted); font-size: 0.95rem;">
+El contenido en vivo crea conversación en el local sin depender de un show externo.
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como-funciona" class="section">
+<div class="container">
+<h2 class="section-title animate-on-scroll">Cómo funciona (simple y claro)</h2>
+<p class="section-subtitle animate-on-scroll">
+Sin configuraciones eternas. Sin curvas raras. Una experiencia que se entiende en el momento.
+</p>
+<div class="row g-4">
+<div class="col-md-4 animate-on-scroll">
+<div class="glass-card text-center h-100">
+<div class="step-num">1</div>
+<h5 class="fw-bold">QR en mesas / puntos</h5>
+<p class="mb-0" style="color: var(--muted);">El cliente escanea y entra desde su navegador.</p>
+</div>
+</div>
+<div class="col-md-4 animate-on-scroll">
+<div class="glass-card text-center h-100">
+<div class="step-num">2</div>
+<h5 class="fw-bold">Participación guiada</h5>
+<p class="mb-0" style="color: var(--muted);">Vota, sugiere y se integra a la dinámica del local.</p>
+</div>
+</div>
+<div class="col-md-4 animate-on-scroll">
+<div class="glass-card text-center h-100">
+<div class="step-num">3</div>
+<h5 class="fw-bold">Pantallas en vivo</h5>
+<p class="mb-0" style="color: var(--muted);">Ranking, próximos temas y momentos visibles para todos.</p>
+</div>
+</div>
+</div>
+<div class="row mt-4">
+<div class="col-lg-10 mx-auto animate-on-scroll">
+<div class="glass-card text-center">
+<h4 class="fw-bold mb-2">Implementación con acompañamiento</h4>
+<p class="mb-0" style="color: var(--muted);">
+Configuración, pantallas, QR y puesta en marcha. Usted se enfoca en su operación; nosotros en la tecnología.
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section id="demo" class="cta-band">
+<div class="container">
+<div class="row">
+<div class="col-lg-9 mx-auto text-center">
+<h2 class="cta-title">¿Quiere ver MOYOFY funcionando en su propio concepto?</h2>
+<p class="cta-text">
+Le mostramos una demo enfocada en su tipo de local (sport bar, lounge, club, pub, restaurante nocturno) y le explicamos
+cómo integrar pantallas, dinámica musical y gamificación sin fricción.
+</p>
+<div class="d-flex justify-content-center flex-wrap gap-2">
+<a class="btn btn-light btn-hero" href="mailto:abundiatech@engineer.com?subject=Demo%20MOYOFY%20para%20mi%20local&body=Hola%2C%20quiero%20una%20demo%20de%20MOYOFY.%0A%0ANombre%20del%20local%3A%0ATipo%20de%20local%3A%0ACiudad%3A%0ACantidad%20aprox.%20de%20mesas%3A%0A%0AGracias.">
+<i class="fa-solid fa-envelope me-2"></i> Pedir demo por correo
+</a>
+<a class="btn btn-outline-light btn-hero" href="https://wa.me/50672232295" target="_blank" rel="noopener noreferrer">
+<i class="fab fa-whatsapp me-2"></i> WhatsApp
+</a>
+</div>
+
+<!-- Íconos adicionales para Telegram, Calendly y más -->
+<div class="contact-icons">
+  <a href="https://calendly.com/moyofy" class="contact-icon calendly" target="_blank" rel="noopener noreferrer" title="Agendar en Calendly">
+    <i class="fas fa-calendar-alt"></i>
+  </a>
+  <a href="https://wa.me/50672232295" class="contact-icon whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/AbundiaTech" class="contact-icon telegram" target="_blank" rel="noopener noreferrer" title="Telegram">
+    <i class="fab fa-telegram"></i>
+  </a>
+  <a href="mailto:abundiatech@engineer.com" class="contact-icon email" title="Email">
+    <i class="fas fa-envelope"></i>
+  </a>
+</div>
+
+<p class="mt-3 mb-0" style="opacity: 0.92;">
+Sin compromiso. Enfocado en resultados de experiencia y diferenciación.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="row g-4">
+<div class="col-md-6">
+<p class="footer-brand">MOYOFY</p>
+<p class="footer-muted mt-2 mb-0">
+Social Music Bar Platform — participación, comunidad y pantallas en vivo para espacios nocturnos.
+</p>
+</div>
+<div class="col-md-3">
+<p class="fw-bold mb-2">Secciones</p>
+<div class="d-flex flex-column gap-1">
+<a class="footer-link" href="#como-funciona">Cómo funciona</a>
+<a class="footer-link" href="#demo">Solicitar demo</a>
+</div>
+</div>
+<div class="col-md-3">
+<p class="fw-bold mb-2">Contacto</p>
+<div class="footer-muted">
+<div class="mb-1"><i class="fab fa-whatsapp me-2"></i> <a href="https://wa.me/50672232295" class="footer-link" target="_blank" rel="noopener noreferrer">+506 7223 2295</a></div>
+<div class="mb-1"><i class="fab fa-telegram me-2"></i> <a href="https://t.me/AbundiaTech" class="footer-link" target="_blank" rel="noopener noreferrer">@AbundiaTech</a></div>
+<div class="mb-1"><i class="fas fa-envelope me-2"></i> <a href="mailto:abundiatech@engineer.com" class="footer-link">abundiatech@engineer.com</a></div>
+<div><i class="fa-solid fa-location-dot me-2"></i> San José, Costa Rica</div>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-3" style="border-top: 1px solid rgba(255,255,255,0.10);">
+<p class="mb-0 text-center" style="color: rgba(255,255,255,0.70);">
+© <span id="year"></span> MOYOFY. Experiencia social a través de la música.
+</p>
+</div>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+document.addEventListener('DOMContentLoaded', function () {
+const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -50px 0px' };
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) entry.target.classList.add('visible');
+});
+}, observerOptions);
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+document.querySelectorAll('a.btn').forEach(btn => {
+btn.addEventListener('mouseenter', () => btn.style.transform = 'translateY(-2px) scale(1.02)');
+btn.addEventListener('mouseleave', () => btn.style.transform = 'translateY(0) scale(1)');
+});
+});
+</script>
+
+<!-- Schema.org JSON-LD for SEO -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "SoftwareApplication",
+"name": "MOYOFY",
+"applicationCategory": "BusinessApplication",
+"operatingSystem": "Web-based",
+"description": "Plataforma de música participativa para bares y espacios nocturnos que convierte la experiencia musical en una dinámica social con pantallas en vivo, ranking y gamificación.",
+"url": "https://moyofy.com",
+"image": "https://i.ibb.co/9kRwcT9V/MOYOFY-2.png",
+"author": {
+"@type": "Organization",
+"name": "Abundia.io"
+},
+"offers": {
+"@type": "Offer",
+"price": "0",
+"priceCurrency": "USD"
+}
+}
+</script>
+</body>
+</html>
